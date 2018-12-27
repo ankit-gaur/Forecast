@@ -170,4 +170,5 @@ def save_results(datalist,filename):
         fp.write("\n".join(datalist).encode())
 
 if __name__ == "__main__":
-    save_results(get_monthly_forecast(5),"monthly_forecast.txt")
+    save_results(get_weekly_forecast(2),"weekly_forecast.txt") #save 2 weeks forecast
+    save_results(get_monthly_forecast(2),"monthly_forecast.txt")#save 2 months forecast
