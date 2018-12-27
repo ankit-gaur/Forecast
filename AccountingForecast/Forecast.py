@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
 import datetime
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
@@ -8,7 +7,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.svm import SVR
-import xgboost as xgb
+# import xgboost as xgb
 import random
 datelist = pd.date_range(pd.datetime.today(), periods=100).tolist()
 
@@ -143,26 +142,26 @@ def get_model(Xtrain,Xtest,ytrain):
     model.fit(Xtrain,ytrain)
     return (model,Xtest)
 
-def get_xgb_model(Xtrain,Xtest,ytrain):
-    dtrain = xgb.DMatrix(np.array(Xtrain), label=ytrain)
-    dtest = xgb.DMatrix(np.array(Xtest))
-    xgb_params = {
-        'objective':'reg:linear',
-        'booster': 'gbtree',
-        'eval_metric': 'auc',
-        'eta': 0.02,
-        'max_depth': 8,
-        'lambda': 4,
-        'alpha': 0.02,
-        'subsample': 0.8,
-        'colsample_bytree': 0.8,
-        'min_child_weight':4,
-        'silent': 1
-    }
-    num_round=100
-    gbdt = xgb.train(xgb_params, dtrain,num_round)
-#     get_xgb_feat_importances(gbdt)
-    return (gbdt,dtest)
+# def get_xgb_model(Xtrain,Xtest,ytrain):
+#     dtrain = xgb.DMatrix(np.array(Xtrain), label=ytrain)
+#     dtest = xgb.DMatrix(np.array(Xtest))
+#     xgb_params = {
+#         'objective':'reg:linear',
+#         'booster': 'gbtree',
+#         'eval_metric': 'auc',
+#         'eta': 0.02,
+#         'max_depth': 8,
+#         'lambda': 4,
+#         'alpha': 0.02,
+#         'subsample': 0.8,
+#         'colsample_bytree': 0.8,
+#         'min_child_weight':4,
+#         'silent': 1
+#     }
+#     num_round=100
+#     gbdt = xgb.train(xgb_params, dtrain,num_round)
+# #     get_xgb_feat_importances(gbdt)
+#     return (gbdt,dtest)
 
 def save_results(datalist,filename):
     datalist = list(datalist)
